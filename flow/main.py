@@ -25,30 +25,13 @@ class FlowchartSVG:
         print(ast_module)
         parse_module(ast_module, self.canvas, 0)
                 
-        # print(self.canvas.svg_content())
         svg_server(self.canvas, port=9000)
 
+code = '''
+import this
 
-p = FlowchartSVG('''
-import this as t, that; import all
-import pygame
-import cv2 as cv
-xas = cv
-for i in this:
-    for name in n:
-        x = y
-        y = y
-    dx = dy
-@decorator
-def hello():
-    print("mhm")
-if x == cv:
-    print("True")
-elif y == l:
-    pass
-while i < 5:
-    pass
-print("hello")
-''', 1000, 2000, "#333")
-p.svg()
-_ast.Call
+x = y
+for item in this:
+    x = y
+'''
+FlowchartSVG(code, 1000, 2000, "yellow").svg()
