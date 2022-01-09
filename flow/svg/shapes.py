@@ -78,13 +78,13 @@ class Point(Shape):
     """
         Class to represent
     """
-    def __init__(self, x: int, y: int, canvas: Canvas):
-        super().__init__(canvas)
+    def __init__(self, x: int, y: int):
+        
 
         self.x = x
         self.y = y
-        self.canvas = canvas
-        self.check_outline()
+        # self.canvas = canvas
+        # self.check_outline()
 
     def check_outline(self):
         if self.x > self.canvas.width:
@@ -143,20 +143,16 @@ class Ellipse(Shape):
                f'ry="{self.ry}" style="{self.style.svg()}" />'
 
 class Parallelogram(Shape):
-    def __init__(self, x: Union[int, str], y: Union[int, str], width: Union[int, str], height: Union[int, str], skewx: str, parent: Canvas, style: Style):
+    def __init__(self, x: Union[int, str], y: Union[int, str], width: Union[int, str], height: Union[int, str], canvas: Canvas, style: Style = Style({"fill": "yellow"})):
         
-        super().__init__(parent)
-        parent.add_shape(self)
-
         self.x = x
         self.y = y
         self.width = width
         self.height = height
-        self.skewx = skewx
         self.style = style
+        self.canvas = canvas
     
-    def svg_content(self):
-        return f'<rect x="{self.x}" y="{self.y}" width="{self.width}" height="{self.height}" style={self.style.svg()} transform="skewX({self.skewx})"/>'
+        Polygon(points=[Point(self.x, self.y), Point(self.x + self.width + 30, self.y), Point(self.x + self.width, self.y + self.height), Point(self.x - 30, self.y + self.height)], parent=self.canvas, style=self.style).svg_content()
 
 
 class Line(Shape):
@@ -188,6 +184,7 @@ class Text(Shape):
 
         super().__init__(parent)
         parent.add_shape(self)
+
         self.x = x
         self.y = y
         self.canvas = parent
