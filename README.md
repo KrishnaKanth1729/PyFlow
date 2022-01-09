@@ -5,10 +5,10 @@ Any Python Code like this can be converted to flowcharts
 ```python
 import this
 
-x = 5
+x = y
 
 for item in this:
-	x = 5
+	x = y
 ```
 
 
